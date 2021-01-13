@@ -16,12 +16,12 @@ In this project you'll take this crypto currency tracker app and build two custo
 
 ## Project Set Up
 
-- [ ] Create a forked copy of this project.
-- [ ] Clone your OWN version of the repository in your terminal
-- [ ] CD into the project base directory `cd dark-mode`
-- [ ] Download project dependencies by running `npm install`
-- [ ] Start up the app using `npm start`
-- [ ] Create a new branch: git checkout -b `<firstName-lastName>`.
+- [x] Create a forked copy of this project.
+- [x] Clone your OWN version of the repository in your terminal
+- [x] CD into the project base directory `cd dark-mode`
+- [x] Download project dependencies by running `npm install`
+- [x] Start up the app using `npm start`
+- [x] Create a new branch: git checkout -b `<firstName-lastName>`.
 - [ ] Implement the project on your newly created `<firstName-lastName>` branch, committing changes regularly.
 - [ ] Push commits: git push origin `<firstName-lastName>`.
 
@@ -67,9 +67,9 @@ const [storedValue, setStoredValue] = useState(() => {
 import { useState } from "react";
 
 export const useLocalStorage = (key, initialValue) => {
-  const [storedValue, setStoredValue] = useState(() => {
-    const item = window.localStorage.getItem(key);
-    return item ? JSON.parse(item) : initialValue;
+  const [storedValue, setStoredValue] = useState(() => { //*same as line 56
+    const item = window.localStorage.getItem(key); //*same as line 58
+    return item ? JSON.parse(item) : initialValue; //*same as line 60
   });
 
   return [storedValue];
@@ -86,9 +86,9 @@ export const useLocalStorage = (key, initialValue) => {
 ```js
 const setValue = value => {
   // Save state
-  setStoredValue(value);
+  setStoredValue(value); //*save it to place 1
   // Save to local storage
-  window.localStorage.setItem(key, JSON.stringify(value));
+  window.localStorage.setItem(key, JSON.stringify(value)); //*save it to place 2
 };
 ```
 
@@ -112,6 +112,26 @@ Now that we have composed our different pieces of stateful logic, let's use it i
 - Looking at this component, we see that we are controlling the toggle with some state. The state hook here returns a `darkMode` value, and a `setDarkMode` function. Isn't that exactly what our `useDarkMode` hook returns as well? Replace the state hook with our hook, click the toggle, and watch the magic happen!!!
 
 (If it wasn't magical, you have a bug somewhere 😫 go back through the steps slowly, one at a time, to see if you missed any of the steps)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 ## Stretch Problems
 
