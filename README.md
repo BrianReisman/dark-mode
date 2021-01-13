@@ -44,10 +44,13 @@ Open your app and take a look around. The crypto currency data is being fetched 
 This is going to be a pretty cool hook. It will be used pretty much the same way as `useState`, but with a key and value passed into it - ie `const [name, setName] = useLocalStorage('name', 'Dustin')`. You can use `setName` to update the value of `name` on localStorage! Pretty cool, huh? Let's get to it!
 
 - Create a new directory called `hooks`, and a new file in it called `useLocalStorage`.
-- Build a function called `useLocalStorage`. Now, to set something to localStorage, we need a key (must be a string) and a value (can be anything). To retrieve something from localStorage, we need the key. To update something in localStorage, you use the same method as adding something new, and it will just replace the old key/value pair in localStorage. Knowing this, let's add `key` and `initialValue` as parameters to the hook.
+
+- Build a function called `useLocalStorage`. ******Now, to set something to localStorage, we need a key (must be a string) and a value (can be anything). To retrieve something from localStorage, we need the key.****** To update something in localStorage, you use the same method as adding something new, and it will just replace the old key/value pair in localStorage. Knowing this, let's add `key` and `initialValue` as parameters to the hook.
 - We're going to set up some state here. Set up a state property called storedValue.
   - This state property is going to take a function as it's initial value. When we do this, whatever that callback function returns is what gets set as the intialValue for the state property.
   - In the callback function, we'll check to see if the item we passed in already exists in localStorage, and return that value, otherwise we'll return whatever initialValue was passed in.
+
+
   - Quick note, if you pass in arrays or objects to localStorage, you will need to parse it into JSON. Then when you retrieve it, like we do below, you'll need to parse it back into regular JavaScript
 
 ```js
@@ -99,7 +102,10 @@ We're going to use this inside our dark mode hook, but this can be used anywhere
 - Inside the `hooks` directory, add a new file called `useDarkMode`.
 - Build a function called `useDarkMode`.
 - Import `useLocalStorage`
-- Call `useLocalStorage` and pass in the key you want to use to store to indicate whether or not dark mode is enabled. Remember, this hook returns an array with a value and a setter in an array, exactly like the state hook, so make sure to capture those values in a `const` - `const [someValue, setSomeValue] = useLocalStorage('your key here')`
+- Call `useLocalStorage` and pass in the key you want to use to store to indicate whether or not dark mode is enabled. Remember, this hook returns an array with a **value** and a **setter** in an array, exactly like the state hook, so make sure to capture those values in a `const` - `const [someValue, setSomeValue] = useLocalStorage('your key here')`
+
+
+
 - Finally, we need to return something out of `useDarkMode`, so we can use this in our app. What do you think we'll need? We'll need to know if dark mode is enabled, right? And we'll need a setter function to toggle dark mode. Let's just forward the value and the setter that were returned out of the `useLocalStorage` call. Return those two values in an array as well.
 
 _In this case `useDarkMode` isn't doing any of it's own logic, just simply composing `useLocalStorage` inside it and passing those values back to the component. There are other things we **could** do here to extend even more logic. If you want to try that after you're finished, check out the first stretch goal 👍_
